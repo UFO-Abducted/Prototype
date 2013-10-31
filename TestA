@@ -1,0 +1,74 @@
+#include <Servo.h>
+
+#define MIN_SIGNAL 700 //0%
+#define TEN_SIGNAL 830 //10%
+#define FTN_SIGNAL 895 //15%
+#define TWE_SIGNAL 960 //20$
+#define TWF_SIGNAL 1025 //25%
+#define THI_SIGNAL 1090 //30% throttle etc
+#define FOR_SIGNAL 1220
+#define FIF_SIGNAL 1350
+#define SIX_SIGNAL 1480
+#define SEV_SIGNAL 1610
+#define EIG_SIGNAL 1740
+#define NIN_SIGNAL 1870
+#define MAX_SIGNAL 2000 //100% throttle
+
+
+#define MOTOR_PIN 5 //FAN A
+#define MOTOR_PIN 6 //FAN B
+#define MOTOR_PIN 7 //FAN C
+#define MOTOR_PIN 8 //FAN D
+#define MOTOR_PIN 9 //FAN E
+#define MOTOR_PIN 10 //FAN F
+
+
+Servo motor;
+
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Program begin...");
+  Serial.println("Normal Start Up.");
+
+  motor.attach(MOTOR_PIN);
+
+  Serial.println("Now writing minimum output.");
+  Serial.println("Press any key and press enter once the PS is connected for 10%");
+   motor.writeMicroseconds(MIN_SIGNAL);
+ 
+
+while (!Serial.available());
+Serial.read();
+ motor.writeMicroseconds(TEN_SIGNAL);
+ Serial.println("10%.");
+  Serial.println("Press any key and press enter for 15%");
+
+while (!Serial.available());
+Serial.read();
+ motor.writeMicroseconds(FTN_SIGNAL);
+ Serial.println("15%.");
+  Serial.println("Press any key and press enter for 20%");
+  
+while (!Serial.available());
+Serial.read();
+ motor.writeMicroseconds(TWE_SIGNAL);
+ Serial.println("20%.");
+  Serial.println("Press any key and press enter for 25%");
+  
+while (!Serial.available());
+Serial.read();
+ motor.writeMicroseconds(TWF_SIGNAL);
+ Serial.println("25%.");  
+  
+  Serial.println("Press any key and press enter for 0%");
+  while (!Serial.available());
+Serial.read();
+ motor.writeMicroseconds(MIN_SIGNAL);  
+
+}
+
+void loop() {  
+
+}
+
+---------------------------------
