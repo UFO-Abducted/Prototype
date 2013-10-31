@@ -1,0 +1,92 @@
+// ESC WIRING:
+// ESC black wire > pin 14 (GND)
+// ESC red wire > no connection (it is +5V from the ESC UBEC)
+// ESC white wire > pin 9 (AD1)
+
+#include <Servo.h>
+
+#define MIN_SIGNAL 700 //0%
+#define TEN_SIGNAL 830 //10%
+#define FTN_SIGNAL 895 //15%
+#define TWE_SIGNAL 960 //20$
+#define TWF_SIGNAL 1025 //25%
+#define THI_SIGNAL 1090 //30% throttle etc
+#define FOR_SIGNAL 1220
+#define FIF_SIGNAL 1350
+#define SIX_SIGNAL 1480
+#define SEV_SIGNAL 1610
+#define EIG_SIGNAL 1740
+#define NIN_SIGNAL 1870
+#define MAX_SIGNAL 2000 //100% throttle
+
+
+#define MOTOR_PINF 5 //FAN A front  - all fans DO NOT get the same PWM signals
+#define MOTOR_PINR 6 //FAN B right1
+#define MOTOR_PINR 7 //FAN C right2
+#define MOTOR_PINB 8 //FAN D back
+#define MOTOR_PINL 9 //FAN E left1
+#define MOTOR_PINL 10 //FAN F left2
+
+//#define MOTOR_PIN 6 
+Servo motorA;
+Servo motorB;
+Servo motorC;
+Servo motorD;
+Servo motorE;
+Servo motorF;
+
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Program begin...");
+  Serial.println("Normal Start Up.");
+
+  motorA.attach(MOTOR_PINF);
+  motorB.attach(MOTOR_PINR);
+  motorC.attach(MOTOR_PINR);
+  motorD.attach(MOTOR_PINB);
+  motorE.attach(MOTOR_PINL);
+  motorF.attach(MOTOR_PINL);
+  Serial.println("Now writing minimum output.");
+  Serial.println("Press any key and press enter once the PS is connected for HOVER "); // WHATEVER VALUE LETS THE FAN HOVER
+   
+   motorA.writeMicroseconds(MIN_SIGNAL);
+   motorB.writeMicroseconds(MIN_SIGNAL);
+   motorC.writeMicroseconds(MIN_SIGNAL);
+   motorD.writeMicroseconds(MIN_SIGNAL);
+   motorE.writeMicroseconds(MIN_SIGNAL);
+   motorF.writeMicroseconds(MIN_SIGNAL);
+ 
+
+while (!Serial.available());
+Serial.read();
+   motorA.writeMicroseconds(MIN_SIGNAL);/// WHATEVER VALUE LETS THE FAN HOVER
+   motorB.writeMicroseconds(MIN_SIGNAL);/// WHATEVER VALUE LETS THE FAN HOVER
+   motorC.writeMicroseconds(MIN_SIGNAL);/// WHATEVER VALUE LETS THE FAN HOVER
+   motorD.writeMicroseconds(MIN_SIGNAL);/// WHATEVER VALUE LETS THE FAN HOVER
+   motorE.writeMicroseconds(MIN_SIGNAL);/// WHATEVER VALUE LETS THE FAN HOVER
+   motorF.writeMicroseconds(MIN_SIGNAL);/// WHATEVER VALUE LETS THE FAN HOVER
+ Serial.println("----%."); /// WHATEVER VALUE LETS THE FAN HOVER
+  Serial.println("Press any key and press enter for TILT TEST");
+
+while (!Serial.available());
+Serial.read();
+   motorA.writeMicroseconds(MIN_SIGNAL);/// WHATEVER VALUE LETS THE FAN HOVER
+   motorB.writeMicroseconds(MIN_SIGNAL);/// WHATEVER VALUE LETS THE FAN HOVER
+   motorC.writeMicroseconds(MIN_SIGNAL);/// WHATEVER VALUE LETS THE FAN HOVER
+   motorD.writeMicroseconds(MIN_SIGNAL);/// WHATEVER VALUE LETS THE FAN HOVER
+   motorE.writeMicroseconds(MIN_SIGNAL);/// DROP 10% from hover value
+   motorF.writeMicroseconds(MIN_SIGNAL);/// DROP 10% from hover value
+ Serial.println("TILT");
+  Serial.println("");
+  
+  Serial.println("Press any key and press enter for 0%");
+  while (!Serial.available());
+Serial.read();
+ motor.writeMicroseconds(MIN_SIGNAL);  
+
+
+}
+
+void loop() {  
+
+}
