@@ -1,0 +1,123 @@
+// ESC WIRING:
+// ESC black wire > pin 14 (GND)
+// ESC red wire > no connection (it is +5V from the ESC UBEC)
+// ESC white wire > pin 9 (AD1)
+
+#include <Servo.h>
+
+#define MIN_SIGNAL 700 //0%
+#define TEN_SIGNAL 830 //10%
+#define FTN_SIGNAL 895 //15%
+#define TWE_SIGNAL 960 //20$
+#define TWF_SIGNAL 1025 //25%
+#define THI_SIGNAL 1090 //30% throttle etc
+#define FOR_SIGNAL 1220
+#define FIF_SIGNAL 1350
+#define SIX_SIGNAL 1480
+#define SEV_SIGNAL 1610
+#define EIG_SIGNAL 1740
+#define NIN_SIGNAL 1870
+#define MAX_SIGNAL 2000 //100% throttle
+
+
+#define MOTOR_PIN 5 
+//#define MOTOR_PIN 6 
+Servo motor;
+
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Program begin...");
+  Serial.println("Normal Start Up.");
+
+  motor.attach(MOTOR_PIN);
+
+  Serial.println("Now writing minimum output.");
+  Serial.println("Press any key and press enter once the PS is connected for 10%");
+   motor.writeMicroseconds(MIN_SIGNAL);
+ 
+
+while (!Serial.available());
+Serial.read();
+ motor.writeMicroseconds(TEN_SIGNAL);
+ Serial.println("10%.");
+  Serial.println("Press any key and press enter for 15%");
+
+while (!Serial.available());
+Serial.read();
+ motor.writeMicroseconds(FTN_SIGNAL);
+ Serial.println("15%.");
+  Serial.println("Press any key and press enter for 20%");
+  
+while (!Serial.available());
+Serial.read();
+ motor.writeMicroseconds(TWE_SIGNAL);
+ Serial.println("20%.");
+  Serial.println("Press any key and press enter for 25%");
+  
+while (!Serial.available());
+Serial.read();
+ motor.writeMicroseconds(TWF_SIGNAL);
+ Serial.println("25%.");  
+  
+Serial.println("Press any key and press enter once the PS is connected for 30%");
+   motor.writeMicroseconds(MIN_SIGNAL);
+ 
+while (!Serial.available());
+Serial.read();
+ motor.writeMicroseconds(THI_SIGNAL);
+ Serial.println("30%.");
+  Serial.println("Press any key and press enter for 40%");
+
+while (!Serial.available());
+Serial.read();
+ motor.writeMicroseconds(FOR_SIGNAL);
+ Serial.println("40%.");
+  Serial.println("Press any key and press enter for 50%");
+  
+while (!Serial.available());
+Serial.read();
+ motor.writeMicroseconds(FIF_SIGNAL);
+ Serial.println("50%.");
+  Serial.println("Press any key and press enter for 60%");
+  
+while (!Serial.available());
+Serial.read();
+ motor.writeMicroseconds(SIX_SIGNAL);
+ Serial.println("60%.");
+  Serial.println("Press any key and press enter for 70%");
+  
+while (!Serial.available());
+Serial.read();
+ motor.writeMicroseconds(SEV_SIGNAL);
+ Serial.println("70%.");
+  Serial.println("Press any key and press enter for 80%");
+  
+  while (!Serial.available());
+Serial.read();
+ motor.writeMicroseconds(EIG_SIGNAL);
+ Serial.println("80%.");
+  Serial.println("Press any key and press enter for 90%");
+  
+  while (!Serial.available());
+Serial.read();
+ motor.writeMicroseconds(NIN_SIGNAL);
+ Serial.println("90%.");
+  Serial.println("Press any key and press enter for 100%");
+  
+  while (!Serial.available());
+Serial.read();
+ motor.writeMicroseconds(MAX_SIGNAL);
+ Serial.println("100%.");
+  Serial.println("Press any key and press enter for 0%");
+  while (!Serial.available());
+Serial.read();
+ motor.writeMicroseconds(MIN_SIGNAL);  
+
+
+}
+
+void loop() {  
+
+}
+
+---------------------------------
